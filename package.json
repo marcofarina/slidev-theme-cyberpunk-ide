@@ -25,6 +25,7 @@
   "slidev": {
     "colorSchema": "dark",
     "defaults": {
+      "lineNumbers": true,
       "fonts": {
         "sans": "Monaspace Neon",
         "mono": "Monaspace Neon",

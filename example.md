@@ -13,6 +13,20 @@ Benvenuti nel corso di Informatica — Anno 2140
   Prof. Marco Farina &nbsp;·&nbsp; Classe 4BI &nbsp;·&nbsp; A.S. 2025/26
 </div>
 
+<!-- Slot opzionali — decommentare per usarli
+
+::logo::
+<img src="/logo-scuola.png" alt="Logo scuola" />
+
+::logo-right::
+<img src="/logo-corso.png" alt="Logo corso" />
+
+::sponsors::
+<img src="/sponsor1.png" alt="Sponsor 1" />
+<img src="/sponsor2.png" alt="Sponsor 2" />
+
+-->
+
 ---
 filename: variabili.py
 language: Python

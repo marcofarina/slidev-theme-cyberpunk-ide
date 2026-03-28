@@ -25,7 +25,7 @@ The theme uses **Monaspace Neon** (body and code) and **Monaspace Radon** (comme
 
 ### `cover` (default for slide 1)
 
-Title slide with a cyberpunk grid background, scan lines, and a blinking cursor after the heading.
+Title slide with a cyberpunk grid background, scan lines, and an animated gradient on the heading.
 
 ```yaml
 ---
@@ -36,6 +36,38 @@ layout: cover
 
 Subtitle or description
 ```
+
+**Optional named slots:**
+
+| Slot | Position | Purpose |
+|------|----------|---------|
+| `::logo::` | Top-left | School or institution logo |
+| `::logo-right::` | Top-right | Department or course logo |
+| `::sponsors::` | Bottom strip | Sponsor / partner logos |
+
+The top bar is only rendered if at least one of `logo` or `logo-right` is provided. The sponsors strip is only rendered if `sponsors` is provided.
+
+```markdown
+---
+layout: cover
+---
+
+# Course Title
+
+Subtitle
+
+::logo::
+<img src="/logo-school.png" alt="School" />
+
+::logo-right::
+<img src="/logo-dept.png" alt="Department" />
+
+::sponsors::
+<img src="/sponsor1.png" alt="Sponsor A" />
+<img src="/sponsor2.png" alt="Sponsor B" />
+```
+
+Images are automatically constrained (`max-height: 44px` for logos, `28px` for sponsors). Place image files in your presentation's `public/` folder and reference them with a leading `/`.
 
 ### `default`
 
@@ -102,6 +134,16 @@ hideTab: true
 | Right | Language | `language` | `Python` |
 | Right | Encoding | — | `UTF-8` (fixed) |
 | Right | Slide counter | — | `current / total` (dynamic) |
+
+## Line numbers
+
+Line numbers are **enabled by default** by the theme. The scope of control is:
+
+| Level | How |
+|-------|-----|
+| Whole presentation (disable) | `lineNumbers: false` in headmatter |
+| Single code block (disable) | ` ```python {lineNumbers:false} ` |
+| Single code block (custom start) | ` ```python {startLine:10} ` |
 
 ## Syntax highlighting
 
