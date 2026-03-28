@@ -2,49 +2,116 @@
 
 [![NPM version](https://img.shields.io/npm/v/slidev-theme-cyberpunk-ide?color=3AB9D4&label=)](https://www.npmjs.com/package/slidev-theme-cyberpunk-ide)
 
-A (...) theme for [Slidev](https://github.com/slidevjs/slidev).
-
-<!--
-  Learn more about how to write a theme:
-  https://sli.dev/guide/write-theme.html
---->
-
-<!--
-  run `npm run dev` to check out the slides for more details of how to start writing a theme
--->
-
-<!--
-  Put some screenshots here to demonstrate your theme
-
-  Live demo: [...]
--->
+A cyberpunk IDE-style theme for [Slidev](https://github.com/slidevjs/slidev), designed for teaching computer science. Each slide looks like a file open in a dark IDE, complete with title bar, tab bar, and status bar.
 
 ## Install
 
-Add the following frontmatter to your `slides.md`. Start Slidev then it will prompt you to install the theme automatically.
+Add the following frontmatter to your `slides.md`:
 
-<pre><code>---
-theme: <b>cyberpunk-ide</b>
----</code></pre>
+```yaml
+---
+theme: cyberpunk-ide
+---
+```
 
-Learn more about [how to use a theme](https://sli.dev/guide/theme-addon#use-theme).
+## Fonts
+
+The theme uses **Monaspace Neon** (body and code) and **Monaspace Radon** (comments in code blocks). These fonts are not on Google Fonts and must be provided locally.
+
+1. Download `Monaspace Neon Var.woff2` and `Monaspace Radon Var.woff2` from the [Monaspace releases](https://github.com/githubnext/monaspace/releases)
+2. Place them in `public/fonts/` inside your presentation folder
 
 ## Layouts
 
-This theme provides the following layouts:
+### `cover` (default for slide 1)
 
-> TODO:
+Title slide with a cyberpunk grid background, scan lines, and a blinking cursor after the heading.
 
-## Components
+```yaml
+---
+layout: cover
+---
 
-This theme provides the following components:
+# Course Title
 
-> TODO:
+Subtitle or description
+```
+
+### `default`
+
+Standard content slide wrapped in the IDE chrome (title bar, tab bar, editor area, status bar).
+
+```yaml
+---
+filename: algoritmi.py   # tab name and title bar — default: main.py
+language: Python         # status bar right — default: Python
+branch: 03/ricorsione    # status bar left — default: main
+repo: informatica-4BI    # status bar left (repo name) — default: cyberpunk-ide
+---
+
+# Slide title
+```
+
+### `section`
+
+Full-screen section divider with a grid background and a glowing accent line.
+
+```yaml
+---
+layout: section
+section: Modulo 2        # label shown above the title — default: Modulo
+---
+
+# *Chapter* Title
+```
+
+Wrap a word in `*...*` (em) to apply the neon purple accent color.
+
+## Tab bar
+
+The tab bar shows one chip-style tab per slide, auto-scrolling to keep the active one visible. Clicking any tab navigates to that slide.
+
+### Hiding slides from the tab bar
+
+By default, slides with `layout: cover` or `layout: section` are **hidden** from the tab bar (they don't have IDE chrome anyway).
+
+To **show all slides** including cover and section slides:
+
+```yaml
+---
+# in the presentation headmatter (first slide)
+themeConfig:
+  tabsShowAll: true
+---
+```
+
+To **hide a specific slide** from the tab bar regardless of the global setting:
+
+```yaml
+---
+hideTab: true
+---
+```
+
+## Status bar
+
+| Position | Content | Frontmatter key | Default |
+|----------|---------|----------------|---------|
+| Left | Repo name (GitHub icon) | `repo` | `cyberpunk-ide` |
+| Left | Branch / topic (git branch icon) | `branch` | `main` |
+| Right | Language | `language` | `Python` |
+| Right | Encoding | — | `UTF-8` (fixed) |
+| Right | Slide counter | — | `current / total` (dynamic) |
+
+## Syntax highlighting
+
+Code blocks use the **Tokyo Night** theme via Shiki. Comment tokens are automatically rendered in **Monaspace Radon** (cursive/calligraphic style) to visually distinguish them from code.
 
 ## Contributing
 
-- `npm install`
-- `npm run dev` to start theme preview of `example.md`
-- Edit the `example.md` and style to see the changes
-- `npm run export` to generate the preview PDF
-- `npm run screenshot` to generate the preview PNG
+```bash
+npm install
+npm run dev        # preview example.md with live reload
+npm run export     # export to PDF
+npm run screenshot # export to PNG
+```

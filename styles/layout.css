@@ -66,7 +66,8 @@
 
 .slidev-layout.default,
 .slidev-layout.two-cols {
-  padding: 0 !important;
+  padding: 10px !important;
+  background: #080910;
 }
 
 .ide-frame {
@@ -76,6 +77,12 @@
   width: 100%;
   background: var(--cp-bg);
   box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px var(--cp-border),
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(42, 195, 222, 0.04);
 }
 
 /* — Title bar — */
@@ -117,14 +124,15 @@
 /* — Tab bar — */
 .ide-tabbar {
   display: flex;
-  align-items: stretch;
-  height: 30px;
+  align-items: center;
+  height: 36px;
+  gap: 4px;
+  padding: 0 8px;
   background: var(--cp-bg-sidebar);
   border-bottom: 1px solid var(--cp-border);
   flex-shrink: 0;
   overflow-x: auto;
   overflow-y: hidden;
-  /* hide scrollbar — IDE style */
   scrollbar-width: none;
 }
 
@@ -136,43 +144,47 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 0 12px;
+  padding: 0 10px;
+  height: 24px;
   font-size: 11px;
   color: var(--cp-text-dim);
-  border-right: 1px solid var(--cp-border);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
   user-select: none;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
 .ide-tab:hover:not(.active) {
   background: #1f2335;
   color: var(--cp-text);
+  border-color: var(--cp-border-hi);
 }
 
 .ide-tab.active {
   background: var(--cp-bg-tab-active);
   color: var(--cp-text);
-  border-top: 1px solid var(--cp-blue);
-  margin-top: -1px;
+  border-color: var(--cp-cyan);
+  box-shadow: 0 0 6px #7dcfff22;
 }
 
 .ide-tab-icon {
   font-size: 9px;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .ide-tab-close {
   margin-left: 2px;
-  opacity: 0.3;
+  opacity: 0.25;
   font-size: 13px;
   line-height: 1;
 }
 
 .ide-tab.active .ide-tab-close {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* — Editor area — */

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { configs } from '@slidev/client'
 import { useNav } from '@slidev/client'
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 
 withDefaults(defineProps<{
   filename?: string
@@ -16,20 +17,38 @@ withDefaults(defineProps<{
 
 const { slides, currentPage, total, go } = useNav()
 
-const tabbarEl = ref<HTMLElement>()
+// themeConfig.tabsShowAll: true  → show every slide in the tab bar
+// default (false/unset)          → hide slides with layout cover or section
+const tabsShowAll = computed(() => {
+  const v = configs.themeConfig?.tabsShowAll
+  return v === true || v === 'true' || v === 1
+})
+
+const visibleSlides = computed(() => {
+  return slides.value.filter((slide) => {
+    const fm = slide.meta.slide.frontmatter
+    // Per-slide explicit opt-out
+    if (fm.hideTab === true || fm.hideTab === 'true') return false
+    // Global filter: skip cover/section layouts unless tabsShowAll is set
+    if (!tabsShowAll.value) {
+      const layout = (slide.meta as any).layout ?? fm.layout
+      if (layout === 'cover' || layout === 'section') return false
+    }
+    return true
+  })
+})
 
 function slideFilename(no: number): string {
   const slide = slides.value.find(s => s.no === no)
   return slide?.meta?.slide?.frontmatter?.filename ?? `slide-${no}.md`
 }
 
-// Keep the active tab scrolled into view whenever the slide changes
+const tabbarEl = ref<HTMLElement>()
+
 watch(currentPage, async () => {
   await nextTick()
   const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
-  if (active && tabbarEl.value) {
-    active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
-  }
+  if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
 }, { immediate: true })
 </script>
 
@@ -46,10 +65,10 @@ watch(currentPage, async () => {
       <div class="ide-titlebar-text">{{ filename }} — Cyberpunk IDE</div>
     </div>
 
-    <!-- Tab Bar — one tab per slide, active = current slide -->
+    <!-- Tab Bar -->
     <div ref="tabbarEl" class="ide-tabbar">
       <div
-        v-for="slide in slides"
+        v-for="slide in visibleSlides"
         :key="slide.no"
         class="ide-tab"
         :class="{ active: slide.no === currentPage }"

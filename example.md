@@ -1,6 +1,8 @@
 ---
 theme: ./
 title: Cyberpunk IDE Theme
+# themeConfig:
+#   tabsShowAll: true   # uncomment to show cover/section slides in the tab bar too
 ---
 
 # Algoritmi e *Strutture Dati*
