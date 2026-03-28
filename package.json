@@ -19,7 +19,9 @@
     "@slidev/types": "^52.14.1"
   },
   "devDependencies": {
-    "@slidev/cli": "^52.14.1"
+    "@slidev/cli": "^52.14.1",
+    "@types/markdown-it-container": "^4.0.0",
+    "markdown-it-container": "^4.0.0"
   },
   "//": "Learn more: https://sli.dev/guide/write-theme.html",
   "slidev": {
@@ -29,7 +31,10 @@
       "fonts": {
         "sans": "Monaspace Neon",
         "mono": "Monaspace Neon",
-        "local": ["Monaspace Neon", "Monaspace Radon"],
+        "local": [
+          "Monaspace Neon",
+          "Monaspace Radon"
+        ],
         "provider": "none"
       }
     }

@@ -212,6 +212,123 @@ def fattoriale(n: int) -> int:
 ```
 
 ---
+filename: callout.md
+language: Markdown
+repo: informatica-4BI
+branch: extra/callout
+---
+
+# Callout — Tutti i tipi
+
+:::definition Definizione
+Un **algoritmo** è una sequenza finita di istruzioni non ambigue che risolve un problema.
+:::
+
+:::info Informazione utile
+Puoi usare `len()` per ottenere la lunghezza di qualsiasi sequenza in Python.
+:::
+
+:::warning Attenzione
+Non modificare una lista mentre la stai iterando con un `for` — il comportamento è indefinito.
+:::
+
+:::clean Clean Code
+Usa nomi di variabili descrittivi: `numero_studenti` è meglio di `n` o `x`.
+:::
+
+:::code Sintassi Python
+La sintassi `for elemento in lista:` itera su tutti gli elementi senza usare indici.
+:::
+
+:::learn Cosa imparerai
+In questo modulo vedrai come usare la **ricorsione** per risolvere problemi complessi in modo elegante.
+:::
+
+---
+layout: section
+section: Extra
+---
+
+# *Formule*, Diagrammi e UML
+
+---
+filename: formule.md
+language: LaTeX
+repo: informatica-4BI
+branch: extra/latex
+---
+
+# Formule con LaTeX
+
+Equazioni **inline**: la formula quadratica è $x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+**Block equation** — serie di Taylor:
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n
+$$
+
+Complessità e logaritmi:
+
+$$
+T(n) = 2\,T\!\left(\frac{n}{2}\right) + O(n) \implies T(n) = O(n \log n)
+$$
+
+Probabilità condizionata (Bayes):
+
+$$
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
+$$
+
+---
+filename: diagramma.md
+language: Mermaid
+repo: informatica-4BI
+branch: extra/mermaid
+---
+
+# Diagrammi con Mermaid
+
+```mermaid {scale: 0.75}
+flowchart TD
+    A([Inizio]) --> B{n <= 1?}
+    B -- Sì --> C([Ritorna 1])
+    B -- No --> D["Ritorna n × fattoriale(n−1)"]
+    D --> E([Fine])
+```
+
+---
+filename: uml.md
+language: PlantUML
+repo: informatica-4BI
+branch: extra/plantuml
+---
+
+# Diagrammi con PlantUML
+
+```plantuml
+@startuml
+skinparam monochrome true
+
+class Animale {
+  +nome: str
+  +verso(): str
+}
+
+class Cane {
+  +verso(): str
+}
+
+class Gatto {
+  +verso(): str
+}
+
+Animale <|-- Cane
+Animale <|-- Gatto
+@enduml
+```
+
+---
 layout: section
 section: Esercizi
 ---
