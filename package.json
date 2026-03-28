@@ -1,0 +1,36 @@
+{
+  "name": "slidev-theme-cyberpunk-ide",
+  "version": "0.0.0",
+  "type": "module",
+  "keywords": [
+    "slidev-theme",
+    "slidev"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "slidev build example.md",
+    "dev": "slidev example.md --open",
+    "export": "slidev export example.md",
+    "screenshot": "slidev export example.md --format png"
+  },
+  "dependencies": {
+    "@slidev/types": "^52.14.1"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.14.1"
+  },
+  "//": "Learn more: https://sli.dev/guide/write-theme.html",
+  "slidev": {
+    "colorSchema": "dark",
+    "defaults": {
+      "fonts": {
+        "sans": "Monaspace Neon",
+        "mono": "Monaspace Neon",
+        "local": ["Monaspace Neon", "Monaspace Radon"],
+        "provider": "none"
+      }
+    }
+  }
+}
