@@ -3,8 +3,17 @@ import { computed, ref } from 'vue'
 
 const props = defineProps<{ text: string }>()
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 const rendered = computed(() =>
-  props.text
+  escapeHtml(props.text)
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/&#96;(.*?)&#96;/g, '<code>$1</code>')
     .replace(/`(.*?)`/g, '<code>$1</code>')
@@ -39,7 +48,7 @@ function adjust() {
 </script>
 
 <template>
-  <span class="cp-tooltip-trigger" @mouseenter="adjust">
+  <span class="cp-tooltip-trigger" tabindex="0" @mouseenter="adjust" @focus="adjust">
     <slot />
     <span ref="boxRef" class="cp-tooltip-box" v-html="rendered" />
   </span>

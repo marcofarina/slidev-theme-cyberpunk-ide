@@ -70,8 +70,8 @@ function getSlideGlossaries(origPath: string): (Record<string, string> | null)[]
     return []
   }
 
-  // Prepend \n so every \n---\n boundary is uniform
-  const chunks = ('\n' + src).split('\n---\n')
+  // Normalize Windows line endings, then prepend \n so every \n---\n boundary is uniform
+  const chunks = ('\n' + src.replace(/\r\n/g, '\n')).split('\n---\n')
   // Slide N: frontmatter = chunks[2N-1], content = chunks[2N]  (1-indexed)
   const maxSlides = Math.floor((chunks.length - 1) / 2)
   const glossaries: (Record<string, string> | null)[] = [null] // index 0 unused

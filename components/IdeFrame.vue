@@ -26,12 +26,12 @@ const tabsShowAll = computed(() => {
 
 const visibleSlides = computed(() => {
   return slides.value.filter((slide) => {
-    const fm = slide.meta.slide.frontmatter
+    const fm = slide?.meta?.slide?.frontmatter ?? {}
     // Per-slide explicit opt-out
     if (fm.hideTab === true || fm.hideTab === 'true') return false
     // Global filter: skip cover/section layouts unless tabsShowAll is set
     if (!tabsShowAll.value) {
-      const layout = (slide.meta as any).layout ?? fm.layout
+      const layout = (slide?.meta as any)?.layout ?? fm.layout
       if (layout === 'cover' || layout === 'section') return false
     }
     return true

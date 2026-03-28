@@ -10,7 +10,7 @@ title: Cyberpunk IDE Theme
 Benvenuti nel corso di Informatica — Anno 2140
 
 <div style="margin-top: 8px; font-size: 0.8rem; color: #565f89">
-  Prof. Marco Farina &nbsp;·&nbsp; Classe 4BI &nbsp;·&nbsp; A.S. 2025/26
+  Prof. Marco Farina &nbsp;·&nbsp; Classe 4A Informatica &nbsp;·&nbsp; A.S. 2025/26
 </div>
 
 <!-- Slot opzionali — decommentare per usarli

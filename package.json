@@ -1,10 +1,28 @@
 {
   "name": "slidev-theme-cyberpunk-ide",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A cyberpunk IDE-style Slidev theme for teaching computer science",
+  "author": "Marco Farina",
+  "license": "Unlicense",
   "type": "module",
   "keywords": [
     "slidev-theme",
     "slidev"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcofarina/slidev-theme-cyberpunk-ide.git"
+  },
+  "homepage": "https://github.com/marcofarina/slidev-theme-cyberpunk-ide",
+  "files": [
+    "components/",
+    "layouts/",
+    "public/",
+    "setup/",
+    "styles/",
+    "vite.config.ts",
+    "README.md",
+    "UNLICENSE"
   ],
   "engines": {
     "node": ">=18.0.0"

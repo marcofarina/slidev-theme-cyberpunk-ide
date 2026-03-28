@@ -149,6 +149,75 @@ Line numbers are **enabled by default** by the theme. The scope of control is:
 
 Code blocks use the **Tokyo Night** theme via Shiki. Comment tokens are automatically rendered in **Monaspace Radon** (cursive/calligraphic style) to visually distinguish them from code.
 
+## Callouts
+
+Six callout types are available for highlighting definitions, tips, warnings, and learning objectives.
+
+```markdown
+:::definition Definizione
+Un **algoritmo** è una sequenza finita di istruzioni non ambigue.
+:::
+
+:::info Informazione utile
+Puoi usare `len()` per ottenere la lunghezza di qualsiasi sequenza.
+:::
+
+:::warning Attenzione
+Non modificare una lista mentre la stai iterando.
+:::
+
+:::clean Clean Code
+Usa nomi descrittivi: `numero_studenti` è meglio di `n`.
+:::
+
+:::code Sintassi Python
+`for elemento in lista:` itera senza usare indici.
+:::
+
+:::learn Cosa imparerai
+In questo modulo vedrai la **ricorsione** in azione.
+:::
+```
+
+| Type | Color | Use for |
+|---|---|---|
+| `definition` | brown | Formal definitions |
+| `info` | yellow | Tips and notes |
+| `warning` | red | Pitfalls and gotchas |
+| `clean` | cyan | Best practices / clean code |
+| `code` | grey | Syntax reminders |
+| `learn` | purple | Learning objectives |
+
+**Custom icon and color** — each callout accepts optional `icon` and `color` props to override the preset:
+
+```markdown
+<Callout type="info" title="Nota" icon="i-ph-star" color="#9ece6a">
+
+Custom icon (any UnoCSS / Phosphor icon class) and hex color.
+
+</Callout>
+```
+
+> Icons used by the presets (`paper.png`, `bulb.png`, etc.) must be present in `public/callouts/` of the presentation folder.
+
+## Glossary tooltips
+
+Add a `glossary` map to a slide's frontmatter to automatically wrap matching terms with interactive tooltips. Hovering (or focusing) the term shows its definition inline.
+
+```yaml
+---
+filename: ricorsione.py
+glossary:
+  algoritmo: Sequenza finita di istruzioni **non ambigue** che risolve un problema
+  ricorsione: Tecnica in cui una funzione chiama `se stessa` per risolvere sotto-problemi
+  caso base: La condizione che ferma la ricorsione, evitando lo stack overflow
+---
+```
+
+Definitions support inline formatting: `**bold**`, `*italic*`, `` `code` ``.
+
+Terms inside fenced code blocks and inline code spans are left untouched.
+
 ## Contributing
 
 ```bash

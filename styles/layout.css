@@ -760,7 +760,8 @@
   transition: opacity 0.15s ease;
 }
 
-.cp-tooltip-trigger:hover .cp-tooltip-box {
+.cp-tooltip-trigger:hover .cp-tooltip-box,
+.cp-tooltip-trigger:focus-within .cp-tooltip-box {
   opacity: 1;
 }
 
