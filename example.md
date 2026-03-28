@@ -212,6 +212,33 @@ def fattoriale(n: int) -> int:
 ```
 
 ---
+filename: tooltip.md
+language: Markdown
+repo: informatica-4BI
+branch: extra/tooltip
+glossary:
+  algoritmo: Sequenza finita di istruzioni **non ambigue** che risolve un problema
+  ricorsione: Tecnica in cui una funzione chiama `se stessa` per risolvere sotto-problemi
+  caso base: La condizione che ferma la ricorsione, evitando lo stack overflow
+---
+
+# Tooltip — Glossario per slide
+
+In questa slide le parole **algoritmo**, **ricorsione** e **caso base** sono
+nel glossario del frontmatter: passaci sopra con il mouse.
+
+Un algoritmo ricorsivo deve sempre avere un caso base, altrimenti la
+ricorsione non termina mai.
+
+```python
+def fattoriale(n):
+    # caso base — non viene sostituito
+    if n <= 1:
+        return 1
+    return n * fattoriale(n - 1)
+```
+
+---
 filename: callout.md
 language: Markdown
 repo: informatica-4BI

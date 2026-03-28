@@ -724,6 +724,54 @@
 .callout-body code   { font-size: 0.9em; }
 
 /* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+.cp-tooltip-trigger {
+  position: relative;
+  display: inline;
+  cursor: help;
+  text-decoration: underline dotted var(--cp-cyan);
+  text-underline-offset: 3px;
+}
+
+.cp-tooltip-box {
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 260px;
+  background: var(--cp-bg-sidebar);
+  border: 1px solid var(--cp-border-hi);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.8em;
+  line-height: 1.5;
+  color: var(--cp-text);
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--cp-border);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.cp-tooltip-trigger:hover .cp-tooltip-box {
+  opacity: 1;
+}
+
+.cp-tooltip-box code {
+  font-size: 0.9em;
+  background: var(--cp-bg-editor);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* =========================================================
    SECTION BAR
    ========================================================= */
 
