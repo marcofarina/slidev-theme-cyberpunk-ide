@@ -16,10 +16,7 @@ theme: cyberpunk-ide
 
 ## Fonts
 
-The theme uses **Monaspace Neon** (body and code) and **Monaspace Radon** (comments in code blocks). These fonts are not on Google Fonts and must be provided locally.
-
-1. Download `Monaspace Neon Var.woff2` and `Monaspace Radon Var.woff2` from the [Monaspace releases](https://github.com/githubnext/monaspace/releases)
-2. Place them in `public/fonts/` inside your presentation folder
+The theme uses **Monaspace Neon** (body and code) and **Monaspace Radon** (comments in code blocks). Both variable fonts are bundled with the theme — no manual download or configuration required. They are licensed under the [SIL Open Font License 1.1](public/fonts/LICENSE).
 
 ## Layouts
 
@@ -39,11 +36,11 @@ Subtitle or description
 
 **Optional named slots:**
 
-| Slot | Position | Purpose |
-|------|----------|---------|
-| `::logo::` | Top-left | School or institution logo |
-| `::logo-right::` | Top-right | Department or course logo |
-| `::sponsors::` | Bottom strip | Sponsor / partner logos |
+| Slot             | Position     | Purpose                    |
+| ---------------- | ------------ | -------------------------- |
+| `::logo::`       | Top-left     | School or institution logo |
+| `::logo-right::` | Top-right    | Department or course logo  |
+| `::sponsors::`   | Bottom strip | Sponsor / partner logos    |
 
 The top bar is only rendered if at least one of `logo` or `logo-right` is provided. The sponsors strip is only rendered if `sponsors` is provided.
 
@@ -71,14 +68,14 @@ Images are automatically constrained (`max-height: 44px` for logos, `28px` for s
 
 ### `default`
 
-Standard content slide wrapped in the IDE chrome (title bar, tab bar, editor area, status bar).
+Standard content slide wrapped in the IDE (title bar, tab bar, editor area, status bar).
 
 ```yaml
 ---
-filename: algoritmi.py   # tab name and title bar — default: main.py
+filename: algorithms.py   # tab name and title bar — default: main.py
 language: Python         # status bar right — default: Python
-branch: 03/ricorsione    # status bar left — default: main
-repo: informatica-4BI    # status bar left (repo name) — default: cyberpunk-ide
+branch: 03/recursion    # status bar left — default: main
+repo: ComputerScience101    # status bar left (repo name) — default: cyberpunk-ide
 ---
 
 # Slide title
@@ -91,7 +88,7 @@ Full-screen section divider with a grid background and a glowing accent line.
 ```yaml
 ---
 layout: section
-section: Modulo 2        # label shown above the title — default: Modulo
+section: Module 2        # label shown above the title — default: Modulo
 ---
 
 # *Chapter* Title
@@ -127,23 +124,23 @@ hideTab: true
 
 ## Status bar
 
-| Position | Content | Frontmatter key | Default |
-|----------|---------|----------------|---------|
-| Left | Repo name (GitHub icon) | `repo` | `cyberpunk-ide` |
-| Left | Branch / topic (git branch icon) | `branch` | `main` |
-| Right | Language | `language` | `Python` |
-| Right | Encoding | — | `UTF-8` (fixed) |
-| Right | Slide counter | — | `current / total` (dynamic) |
+| Position | Content                          | Frontmatter key | Default                     |
+| -------- | -------------------------------- | --------------- | --------------------------- |
+| Left     | Repo name (GitHub icon)          | `repo`          | `cyberpunk-ide`             |
+| Left     | Branch / topic (git branch icon) | `branch`        | `main`                      |
+| Right    | Language                         | `language`      | `Python`                    |
+| Right    | Encoding                         | —               | `UTF-8` (fixed)             |
+| Right    | Slide counter                    | —               | `current / total` (dynamic) |
 
 ## Line numbers
 
 Line numbers are **enabled by default** by the theme. The scope of control is:
 
-| Level | How |
-|-------|-----|
-| Whole presentation (disable) | `lineNumbers: false` in headmatter |
-| Single code block (disable) | ` ```python {lineNumbers:false} ` |
-| Single code block (custom start) | ` ```python {startLine:10} ` |
+| Level                            | How                                |
+| -------------------------------- | ---------------------------------- |
+| Whole presentation (disable)     | `lineNumbers: false` in headmatter |
+| Single code block (disable)      | ` ```python {lineNumbers:false} `  |
+| Single code block (custom start) | ` ```python {startLine:10} `       |
 
 ## Syntax highlighting
 
@@ -154,39 +151,39 @@ Code blocks use the **Tokyo Night** theme via Shiki. Comment tokens are automati
 Six callout types are available for highlighting definitions, tips, warnings, and learning objectives.
 
 ```markdown
-:::definition Definizione
-Un **algoritmo** è una sequenza finita di istruzioni non ambigue.
+:::definition Definition
+An **algorithm** is a finite sequence of unambiguous instructions.
 :::
 
-:::info Informazione utile
-Puoi usare `len()` per ottenere la lunghezza di qualsiasi sequenza.
+:::info Useful Information
+You can use `len()` to get the length of any sequence.
 :::
 
-:::warning Attenzione
-Non modificare una lista mentre la stai iterando.
+:::warning Warning
+Do not modify a list while iterating over it.
 :::
 
 :::clean Clean Code
-Usa nomi descrittivi: `numero_studenti` è meglio di `n`.
+Use descriptive names: `number_of_students` is better than `n`.
 :::
 
-:::code Sintassi Python
-`for elemento in lista:` itera senza usare indici.
+:::code Python Syntax
+`for item in list:` iterates without using indices.
 :::
 
-:::learn Cosa imparerai
-In questo modulo vedrai la **ricorsione** in azione.
+:::learn What You Will Learn
+In this module you will see **recursion** in action.
 :::
 ```
 
-| Type | Color | Use for |
-|---|---|---|
-| `definition` | brown | Formal definitions |
-| `info` | yellow | Tips and notes |
-| `warning` | red | Pitfalls and gotchas |
-| `clean` | cyan | Best practices / clean code |
-| `code` | grey | Syntax reminders |
-| `learn` | purple | Learning objectives |
+| Type         | Color  | Use for                      |
+| ------------ | ------ | ---------------------------- |
+| `definition` | brown  | Formal definitions           |
+| `info`       | yellow | Tips and notes               |
+| `warning`    | red    | Pitfalls and gotchas         |
+| `clean`      | cyan   | Best practices / clean code  |
+| `code`       | grey   | Syntax reminders / code tips |
+| `learn`      | purple | Learning objectives          |
 
 **Custom icon and color** — each callout accepts optional `icon` and `color` props to override the preset:
 
@@ -206,23 +203,14 @@ Add a `glossary` map to a slide's frontmatter to automatically wrap matching ter
 
 ```yaml
 ---
-filename: ricorsione.py
+filename: recursion.py
 glossary:
-  algoritmo: Sequenza finita di istruzioni **non ambigue** che risolve un problema
-  ricorsione: Tecnica in cui una funzione chiama `se stessa` per risolvere sotto-problemi
-  caso base: La condizione che ferma la ricorsione, evitando lo stack overflow
+  algorithm: A finite sequence of **unambiguous** instructions that solves a problem
+  recursion: A technique where a function calls `itself` to solve sub-problems
+  base case: The condition that stops the recursion, preventing a stack overflow
 ---
 ```
 
 Definitions support inline formatting: `**bold**`, `*italic*`, `` `code` ``.
 
 Terms inside fenced code blocks and inline code spans are left untouched.
-
-## Contributing
-
-```bash
-npm install
-npm run dev        # preview example.md with live reload
-npm run export     # export to PDF
-npm run screenshot # export to PNG
-```
