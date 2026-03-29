@@ -20,13 +20,66 @@
   font-display: swap;
 }
 
+/* ── Light mode (default) — Tokyo Night Light ── */
 :root {
   /* Backgrounds */
+  --cp-bg-desktop:    #c8cad0;
+  --cp-bg:            #d5d6db;
+  --cp-bg-editor:     #e1e2e7;
+  --cp-bg-sidebar:    #d0d1d6;
+  --cp-bg-tab-active: #e1e2e7;
+  --cp-bg-tab-idle:   #c8c9ce;
+  --cp-bg-overlay:    #bdbec5;
+
+  /* Borders */
+  --cp-border:        #c0c1c6;
+  --cp-border-hi:     #a8a9ae;
+
+  /* Accent palette */
+  --cp-cyan:    #0f4b6e;
+  --cp-blue:    #34548a;
+  --cp-purple:  #5a4a78;
+  --cp-pink:    #8c4351;
+  --cp-green:   #485e30;
+  --cp-yellow:  #c07830;
+  --cp-orange:  #965027;
+
+  /* Text */
+  --cp-text:       #343b58;
+  --cp-text-dim:   #565f89;
+  --cp-text-faint: #9699a3;
+
+  /* Glows (disabled in light mode) */
+  --glow-cyan:   none;
+  --glow-purple: none;
+  --glow-pink:   none;
+  --glow-blue:   none;
+
+  /* Misc */
+  --cp-grid-line:      rgba(52, 84, 138, 0.06);
+  --cp-statusbar-text: #f0f1f5;
+  --cp-shadow-frame:   rgba(0, 0, 0, 0.12);
+  --cp-scanline:       rgba(0, 0, 0, 0.04);
+
+  /* Callout colors */
+  --cp-callout-definition: #7c4f3a;
+  --cp-callout-info:       #b07c15;
+  --cp-callout-warning:    #c0394f;
+  --cp-callout-clean:      #0f6fa0;
+  --cp-callout-code:       #3d4a8a;
+  --cp-callout-learn:      #7b4fc9;
+}
+
+/* ── Dark mode — Tokyo Night ── */
+html.dark {
+  /* Backgrounds */
+  --cp-bg-desktop:    #080910;
   --cp-bg:            #0d0e17;
   --cp-bg-editor:     #1a1b26;
   --cp-bg-sidebar:    #16161e;
   --cp-bg-tab-active: #1a1b26;
   --cp-bg-tab-idle:   #24283b;
+  --cp-bg-overlay:    #1f2335;
 
   /* Borders */
   --cp-border:        #1f2335;
@@ -51,16 +104,30 @@
   --glow-purple: 0 0 8px #bb9af755, 0 0 20px #bb9af722;
   --glow-pink:   0 0 8px #f7768e55, 0 0 20px #f7768e22;
   --glow-blue:   0 0 8px #2ac3de55, 0 0 20px #2ac3de22;
+
+  /* Misc */
+  --cp-grid-line:      rgba(42, 195, 222, 0.038);
+  --cp-statusbar-text: #0d0e17;
+  --cp-shadow-frame:   rgba(0, 0, 0, 0.6);
+  --cp-scanline:       rgba(0, 0, 0, 0.12);
+
+  /* Callout colors */
+  --cp-callout-definition: #a9836e;
+  --cp-callout-info:       #e0af68;
+  --cp-callout-warning:    #f7768e;
+  --cp-callout-clean:      #7dcfff;
+  --cp-callout-code:       #565f89;
+  --cp-callout-learn:      #bb9af7;
 }
 
 /* ── Global — unified "desktop" background ── */
 .slidev-layout {
   font-family: 'JetBrains Mono', monospace;
   color: var(--cp-text);
-  background-color: #080910;
+  background-color: var(--cp-bg-desktop);
   background-image:
-    linear-gradient(rgba(42, 195, 222, 0.038) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 195, 222, 0.038) 1px, transparent 1px);
+    linear-gradient(var(--cp-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cp-grid-line) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -84,8 +151,7 @@
   overflow: hidden;
   box-shadow:
     0 0 0 1px var(--cp-border),
-    0 8px 32px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(42, 195, 222, 0.04);
+    0 8px 32px var(--cp-shadow-frame);
 }
 
 /* — Title bar — */
@@ -93,7 +159,7 @@
   display: flex;
   align-items: center;
   height: 24px;
-  background: #1a1b26;
+  background: var(--cp-bg-editor);
   border-bottom: 1px solid var(--cp-border);
   padding: 0 10px;
   flex-shrink: 0;
@@ -162,7 +228,7 @@
 }
 
 .ide-tab:hover:not(.active) {
-  background: #1f2335;
+  background: var(--cp-bg-overlay);
   color: var(--cp-text);
   border-color: var(--cp-border-hi);
 }
@@ -227,7 +293,7 @@
   flex-shrink: 0;
   font-size: 10px;
   font-family: 'JetBrains Mono', monospace;
-  color: #0d0e17;
+  color: var(--cp-statusbar-text);
 }
 
 .status-left,
@@ -316,18 +382,14 @@
 
 .ide-content em {
   color: var(--cp-orange);
-  font-style: normal;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-color: var(--cp-orange);
-  text-underline-offset: 3px;
+  font-style: italic;
 }
 
 /* Inline code */
 .ide-content :not(pre) > code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.82em;
-  background: #1f2335;
+  background: var(--cp-bg-overlay);
   color: var(--cp-green);
   border: 1px solid var(--cp-border-hi);
   border-radius: 3px;
@@ -337,7 +399,7 @@
 /* Code blocks (shiki renders a <div class="shiki"><pre>...</pre></div>) */
 .ide-content .shiki,
 .ide-content pre {
-  background: #1a1b26 !important;
+  background: var(--cp-bg-editor) !important;
   border: 1px solid var(--cp-border-hi);
   border-left: 3px solid var(--cp-blue);
   border-radius: 4px;
@@ -363,7 +425,7 @@
 }
 
 .ide-content thead {
-  background: #1f2335;
+  background: var(--cp-bg-overlay);
   border-bottom: 2px solid var(--cp-blue);
 }
 
@@ -383,13 +445,13 @@
   color: var(--cp-text);
 }
 
-.ide-content tr:hover td { background: #1f2335; }
+.ide-content tr:hover td { background: var(--cp-bg-overlay); }
 
 /* KBD */
 .ide-content kbd {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75em;
-  background: #24283b;
+  background: var(--cp-bg-tab-idle);
   border: 1px solid var(--cp-border-hi);
   border-bottom: 2px solid var(--cp-border-hi);
   border-radius: 3px;
@@ -416,7 +478,7 @@
   border-left: 3px solid var(--cp-purple);
   margin: 0.4rem 0;
   padding: 0.3rem 1rem;
-  background: #1f2335;
+  background: var(--cp-bg-overlay);
   color: var(--cp-text-dim);
 }
 
@@ -446,8 +508,8 @@
     0deg,
     transparent,
     transparent 3px,
-    rgba(0, 0, 0, 0.12) 3px,
-    rgba(0, 0, 0, 0.12) 4px
+    var(--cp-scanline) 3px,
+    var(--cp-scanline) 4px
   );
   pointer-events: none;
 }
@@ -672,6 +734,12 @@
   font-family: 'Monaspace Radon', monospace !important;
 }
 
+/* Light mode: darken comment color for projector/TV legibility */
+:root .shiki .token-comment {
+  --shiki-light: #717188 !important;
+  color: #717188 !important;
+}
+
 /* =========================================================
    CALLOUT
    ========================================================= */
@@ -754,7 +822,7 @@
   font-weight: 400;
   text-decoration: none;
   white-space: normal;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--cp-border);
+  box-shadow: 0 4px 20px var(--cp-shadow-frame), 0 0 0 1px var(--cp-border);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease;
@@ -770,6 +838,86 @@
   background: var(--cp-bg-editor);
   padding: 1px 4px;
   border-radius: 3px;
+}
+
+/* =========================================================
+   MERMAID — dark mode CSS overrides
+   (safety net: defineMermaidSetup is called once at init,
+    these rules ensure dark colors regardless of call timing)
+   ========================================================= */
+
+html.dark .mermaid svg {
+  background-color: #1a1b26 !important;
+}
+
+/* Node shapes */
+html.dark .mermaid svg .node rect,
+html.dark .mermaid svg .node circle,
+html.dark .mermaid svg .node ellipse,
+html.dark .mermaid svg .node polygon,
+html.dark .mermaid svg .node path,
+html.dark .mermaid svg .label-container {
+  fill: #24283b !important;
+  stroke: #7dcfff !important;
+}
+
+/* Text */
+html.dark .mermaid svg .nodeLabel,
+html.dark .mermaid svg .label,
+html.dark .mermaid svg text {
+  fill: #c0caf5 !important;
+  color: #c0caf5 !important;
+}
+
+/* Edges & arrows */
+html.dark .mermaid svg .flowchart-link,
+html.dark .mermaid svg .edge-thickness-normal,
+html.dark .mermaid svg path.path {
+  stroke: #565f89 !important;
+}
+html.dark .mermaid svg marker path {
+  fill: #565f89 !important;
+  stroke: #565f89 !important;
+}
+
+/* Edge labels */
+html.dark .mermaid svg .edgeLabel rect,
+html.dark .mermaid svg .edgeLabel span {
+  background: #1a1b26 !important;
+  fill: #1a1b26 !important;
+  color: #c0caf5 !important;
+}
+
+/* Subgraphs / clusters */
+html.dark .mermaid svg .cluster rect {
+  fill: #16161e !important;
+  stroke: #3b4261 !important;
+}
+html.dark .mermaid svg .cluster .label text,
+html.dark .mermaid svg .cluster .label span {
+  fill: #c0caf5 !important;
+  color: #c0caf5 !important;
+}
+
+/* Sequence diagrams */
+html.dark .mermaid svg .actor {
+  fill: #24283b !important;
+  stroke: #7dcfff !important;
+}
+html.dark .mermaid svg .actor-line {
+  stroke: #3b4261 !important;
+}
+html.dark .mermaid svg .note rect,
+html.dark .mermaid svg .note {
+  fill: #1f2335 !important;
+  stroke: #3b4261 !important;
+}
+html.dark .mermaid svg .messageLine0,
+html.dark .mermaid svg .messageLine1 {
+  stroke: #565f89 !important;
+}
+html.dark .mermaid svg .loopLine {
+  stroke: #3b4261 !important;
 }
 
 /* =========================================================
