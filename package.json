@@ -34,12 +34,12 @@
     "screenshot": "slidev export example.md --format png"
   },
   "dependencies": {
-    "@slidev/types": "^52.14.1"
+    "@slidev/types": "^52.14.1",
+    "markdown-it-container": "^4.0.0"
   },
   "devDependencies": {
     "@slidev/cli": "^52.14.1",
-    "@types/markdown-it-container": "^4.0.0",
-    "markdown-it-container": "^4.0.0"
+    "@types/markdown-it-container": "^4.0.0"
   },
   "//": "Learn more: https://sli.dev/guide/write-theme.html",
   "slidev": {
