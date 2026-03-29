@@ -43,7 +43,7 @@
   },
   "//": "Learn more: https://sli.dev/guide/write-theme.html",
   "slidev": {
-    "colorSchema": "dark",
+    "colorSchema": "both",
     "defaults": {
       "lineNumbers": true,
       "fonts": {

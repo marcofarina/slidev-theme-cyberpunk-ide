@@ -14,12 +14,12 @@ const props = defineProps<{
 }>()
 
 const presets: Record<string, { icon: string; color: string }> = {
-  definition: { icon: paperIcon, color: '#a9836e' },
-  info:       { icon: bulbIcon,  color: '#e0af68' },
-  warning:    { icon: fireIcon,  color: '#f7768e' },
-  clean:      { icon: cleanIcon, color: '#7dcfff' },
-  code:       { icon: codeIcon,  color: '#565f89' },
-  learn:      { icon: brainIcon, color: '#bb9af7' },
+  definition: { icon: paperIcon, color: 'var(--cp-callout-definition)' },
+  info:       { icon: bulbIcon,  color: 'var(--cp-callout-info)' },
+  warning:    { icon: fireIcon,  color: 'var(--cp-callout-warning)' },
+  clean:      { icon: cleanIcon, color: 'var(--cp-callout-clean)' },
+  code:       { icon: codeIcon,  color: 'var(--cp-callout-code)' },
+  learn:      { icon: brainIcon, color: 'var(--cp-callout-learn)' },
 }
 
 const preset = props.type ? presets[props.type] : undefined

@@ -2,8 +2,8 @@ import type { ShikiSetupReturn } from '@slidev/types'
 import { defineShikiSetup } from '@slidev/types'
 import type { Element } from 'hast'
 
-// Tokyo Night comment token colors (normal, doc-comment, doc-comment types)
-const COMMENT_COLORS = ['#51597d', '#5a638c', '#646e9c']
+// Comment token colors: Tokyo Night (dark) + min-light (light)
+const COMMENT_COLORS = ['#51597d', '#5a638c', '#646e9c', '#a0a1a7', '#a0a0a0']
 
 function hasCommentColor(style: string): boolean {
   const s = style.toLowerCase()
@@ -24,7 +24,7 @@ export default defineShikiSetup((): ShikiSetupReturn => {
   return {
     themes: {
       dark: 'tokyo-night',
-      light: 'tokyo-night',
+      light: 'min-light',
     },
     transformers: [
       {
