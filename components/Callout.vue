@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import paperIcon from '../public/callouts/paper.png'
+import bulbIcon  from '../public/callouts/bulb.png'
+import fireIcon  from '../public/callouts/fire.png'
+import cleanIcon from '../public/callouts/clean.png'
+import codeIcon  from '../public/callouts/code.png'
+import brainIcon from '../public/callouts/brain.png'
+
 const props = defineProps<{
   type?: string
   title: string
@@ -7,12 +14,12 @@ const props = defineProps<{
 }>()
 
 const presets: Record<string, { icon: string; color: string }> = {
-  definition: { icon: '/callouts/paper.png',  color: '#a9836e' },
-  info:       { icon: '/callouts/bulb.png',   color: '#e0af68' },
-  warning:    { icon: '/callouts/fire.png',   color: '#f7768e' },
-  clean:      { icon: '/callouts/clean.png',  color: '#7dcfff' },
-  code:       { icon: '/callouts/code.png',   color: '#565f89' },
-  learn:      { icon: '/callouts/brain.png',  color: '#bb9af7' },
+  definition: { icon: paperIcon, color: '#a9836e' },
+  info:       { icon: bulbIcon,  color: '#e0af68' },
+  warning:    { icon: fireIcon,  color: '#f7768e' },
+  clean:      { icon: cleanIcon, color: '#7dcfff' },
+  code:       { icon: codeIcon,  color: '#565f89' },
+  learn:      { icon: brainIcon, color: '#bb9af7' },
 }
 
 const preset = props.type ? presets[props.type] : undefined
