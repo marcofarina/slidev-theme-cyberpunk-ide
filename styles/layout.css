@@ -194,9 +194,9 @@ html.dark {
 .ide-tabbar {
   display: flex;
   align-items: center;
-  height: 36px;
-  gap: 4px;
-  padding: 0 8px;
+  height: 30px;
+  gap: 3px;
+  padding: 0 6px;
   background: var(--cp-bg-sidebar);
   border-bottom: 1px solid var(--cp-border);
   flex-shrink: 0;
@@ -212,10 +212,10 @@ html.dark {
 .ide-tab {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 0 10px;
-  height: 24px;
-  font-size: 11px;
+  gap: 4px;
+  padding: 0 8px;
+  height: 20px;
+  font-size: 10px;
   color: var(--cp-text-dim);
   background: transparent;
   border: 1px solid transparent;
@@ -241,14 +241,14 @@ html.dark {
 }
 
 .ide-tab-icon {
-  font-size: 9px;
+  font-size: 8px;
   opacity: 0.5;
 }
 
 .ide-tab-close {
   margin-left: 2px;
   opacity: 0.25;
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1;
 }
 
