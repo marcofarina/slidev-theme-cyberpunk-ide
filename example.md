@@ -396,3 +396,114 @@ print(fizzbuzz(15))
 # [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8,
 #  "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"]
 ```
+
+---
+layout: two-columns
+cols: 1-3
+filename: ricorsione.py
+language: Python
+branch: 03/ricorsione
+repo: informatica-4BI
+---
+
+# Ricorsione — Caso base e caso ricorsivo
+
+::left::
+
+Una funzione **ricorsiva** si chiama da sola con un input più piccolo, fino al **caso base**.
+
+- **Caso base** — condizione di uscita
+- **Caso ricorsivo** — chiamata con input ridotto
+
+::right::
+
+```python
+def fattoriale(n: int) -> int:
+    # Caso base
+    if n == 0:
+        return 1
+
+    # Caso ricorsivo
+    return n * fattoriale(n - 1)
+
+
+print(fattoriale(5))   # 120
+print(fattoriale(0))   # 1
+```
+
+---
+layout: two-columns
+cols: 2-2
+filename: ricorsione.py
+language: Python
+branch: 03/ricorsione
+repo: informatica-4BI
+---
+
+# Stack delle chiamate
+
+::left::
+
+Ogni chiamata a `fattoriale` aggiunge un **frame** allo stack.
+
+Lo stack si svolge quando si raggiunge il caso base:
+
+```
+fattoriale(3)
+  └─ 3 × fattoriale(2)
+         └─ 2 × fattoriale(1)
+                └─ 1 × fattoriale(0)
+                         └─ 1  ← caso base
+```
+
+::right::
+
+```python
+import sys
+
+def fattoriale(n: int, depth: int = 0) -> int:
+    indent = "  " * depth
+    print(f"{indent}fattoriale({n})")
+
+    if n == 0:
+        print(f"{indent}→ 1")
+        return 1
+
+    result = n * fattoriale(n - 1, depth + 1)
+    print(f"{indent}→ {result}")
+    return result
+
+fattoriale(4)
+```
+
+---
+layout: two-columns
+cols: 3-1
+filename: ricorsione.py
+language: Python
+branch: 03/ricorsione
+repo: informatica-4BI
+---
+
+# Algoritmo — Flusso di esecuzione
+
+::left::
+
+```python
+def fattoriale(n: int) -> int:
+    if n == 0:          # caso base
+        return 1
+    return n * fattoriale(n - 1)
+```
+
+La funzione segue il flusso mostrato a destra: controlla il caso base, altrimenti si richiama con `n - 1` e moltiplica il risultato per `n`.
+
+::right::
+
+```mermaid
+flowchart TD
+    A([start]) --> B{n == 0?}
+    B -- sì --> C([return 1])
+    B -- no --> D["return n × f(n-1)"]
+    D --> B
+```
