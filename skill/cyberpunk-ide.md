@@ -99,6 +99,151 @@ Contenuto pannello destro (codice, diagramma, immagine…)
 
 ---
 
+### center (contenuto centrato)
+IDE chrome con contenuto centrato verticalmente nell'area editor. Ideale per diagrammi o un singolo elemento visivo.
+
+```md
+---
+layout: center
+title: Titolo opzionale   # h1 sopra l'area centrata
+filename: diagramma.py
+language: Python
+branch: sorting/overview
+repo: informatica-4BI
+---
+
+```mermaid {scale: 0.7}
+flowchart TD
+    A([start]) --> B{n == 0?}
+    B -- sì --> C([return 1])
+    B -- no --> D["return n × f(n-1)"]
+```
+```
+
+---
+
+### end (slide di chiusura)
+Slide finale full-screen. Stessa estetica di `cover` ma con i bracket angolari specchiati. L'`h1` usa il gradient animato.
+
+```md
+---
+layout: end
+---
+
+# Grazie!
+
+Domande, feedback, contributi?
+
+::footer::
+github.com/tuo-org/tuo-repo
+```
+
+`::footer::` è opzionale — rende una striscia in basso con cursore lampeggiante.
+
+---
+
+### fact (numero o affermazione d'effetto)
+Slide full-screen per un singolo dato enorme o un'affermazione breve. L'`h1` è reso a ~5rem con gradient animato.
+
+```md
+---
+layout: fact
+fact: complessità          # eyebrow sovrascrivibile — default: fact
+---
+
+# O(n log n)
+
+::source::
+Limite inferiore per il sorting per confronto.
+```
+
+`::source::` è opzionale — piccola riga in corsivo sotto per attribuzione o spiegazione.
+
+---
+
+### image (immagine full-screen)
+Immagine come sfondo dell'intera slide, con overlay scuro configurabile. Contenuto testuale opzionale sopra.
+
+```md
+---
+layout: image
+image: /foto.jpg          # richiesto — URL o path relativo a public/
+dim: 55                   # intensità overlay 0–100 — default: 50
+---
+
+# Titolo opzionale
+```
+
+---
+
+### image-left / image-right (split immagine + testo)
+Divide l'area editor in un pannello immagine e uno di testo. `image-left` mette l'immagine a sinistra, `image-right` a destra.
+
+```md
+---
+layout: image-left
+image: /foto.jpg
+cols: 2-3               # default: 2-3 per image-left (40/60)
+filename: esempio.py
+language: Python
+branch: argomento/dettaglio
+repo: informatica-4BI
+---
+
+Contenuto nel pannello di testo.
+```
+
+Per `image-right` il default è `cols: 3-2` (testo 60% / immagine 40%).
+
+---
+
+### quote (citazione)
+Slide full-screen con citazione stilizzata come commento multi-linea `/* ... */` in Monaspace Radon.
+
+```md
+---
+layout: quote
+---
+
+Any fool can write code that a computer can understand.
+Good programmers write code that *humans* can understand.
+
+::author::
+Martin Fowler
+```
+
+`::author::` è opzionale — resa allineata a destra sotto il blocco.
+
+---
+
+### diff (confronto codice)
+IDE chrome con vista diff unificata. Usa un blocco di codice con linguaggio `diff`: prefisso `-` = riga rimossa (rosso), `+` = riga aggiunta (verde), spazio = contesto.
+
+```md
+---
+layout: diff
+filename: sort.py         # default: changes.diff
+language: Python          # default: Diff
+branch: refactor/sorting
+repo: informatica-4BI
+---
+
+# Ottimizzazione del Sort
+
+```diff
+ def sort(arr: list) -> list:
+-    n = len(arr)
+-    for i in range(n):
+-        for j in range(n - i - 1):
+-            if arr[j] > arr[j + 1]:
+-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
++    arr.sort()
+     return arr
+```
+```
+
+---
+
 ## FRONTMATTER PER SLIDE
 
 Every content slide (default and two-columns) accepts these props, which populate the IDE status bar and title bar:
@@ -211,6 +356,18 @@ A slide is full when it contains **one** of these combinations:
 | `1-3` | max 4–5 lines text, no code | code up to 14 lines OR a diagram |
 | `2-2` | 5–8 lines text or short code (6–8 lines) | same |
 | `3-1` | code (10–14 lines) + 2–3 lines prose | short diagram or 4–6 line code |
+
+### image-left / image-right layout
+Content panel follows the same density rules as `default`. The image panel has no text content.
+
+### diff layout
+Fits approximately 18–22 diff lines comfortably (including context lines). Keep the h1 title short (3–5 words) to preserve vertical space for the code block.
+
+### center layout
+One diagram or one large visual element per slide. Optionally add `title:` in frontmatter for an h1 heading above.
+
+### fact layout
+`h1` only — one short phrase or number (max ~30 characters). Use `::source::` for a one-line explanation only.
 
 ### Headings
 - Use `#` (h1) for the slide title — **one per slide**.

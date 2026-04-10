@@ -148,6 +148,172 @@ Right panel content (code, diagram, image…)
 | `2-2`  | 50 / 50 | Text and code of similar length |
 | `3-1`  | 75 / 25 | Code + small diagram or flowchart |
 
+### `center`
+
+IDE chrome with content centred vertically in the editor area. Useful for diagrams, flowcharts, or a single focused element.
+
+```yaml
+---
+layout: center
+title: Optional heading     # renders as h1 above the centred area
+filename: diagram.py
+language: Python
+branch: sorting/overview
+repo: cs-course
+---
+
+```mermaid {scale: 0.7}
+flowchart TD
+    A([start]) --> B{n == 0?}
+    B -- yes --> C([return 1])
+    B -- no  --> D["return n × f(n-1)"]
+```
+```
+
+### `end`
+
+Full-screen closing slide. Mirrors the `cover` layout aesthetically — grid background, scan lines, animated gradient on `h1`, corner brackets in the opposite corners.
+
+```yaml
+---
+layout: end
+---
+
+# Thanks!
+
+Questions, feedback, contributions?
+
+::footer::
+github.com/your-org/your-repo
+```
+
+The optional `::footer::` slot renders a bottom strip (with a blinking cursor) — suitable for a URL, contact info, or a sign-off line.
+
+### `fact`
+
+Full-screen statement slide for a single big number or short claim. The `h1` is rendered at ~5 rem with the animated gradient.
+
+```yaml
+---
+layout: fact
+fact: complexity          # eyebrow label — default: fact
+---
+
+# O(n log n)
+
+::source::
+Lower bound for comparison-based sorting.
+```
+
+The optional `::source::` slot renders a smaller italic line below the statement — suitable for attribution or a one-line explanation.
+
+### `image`
+
+Full-screen background image with optional text overlay.
+
+```yaml
+---
+layout: image
+image: /path/to/photo.jpg       # required — URL or path relative to public/
+backgroundSize: cover           # CSS background-size — default: cover
+backgroundPosition: center      # CSS background-position — default: center
+dim: 55                         # overlay darkness 0–100 — default: 50
+---
+
+# Optional heading
+
+Optional subtitle or caption.
+```
+
+### `image-left` / `image-right`
+
+Splits the IDE editor area into an image panel and a content panel. `image-left` places the image on the left; `image-right` places it on the right.
+
+```yaml
+---
+layout: image-left
+image: /path/to/photo.jpg
+backgroundSize: cover
+backgroundPosition: center
+cols: 2-3               # image-width / content-width — default: 2-3 (40/60)
+filename: example.py
+language: Python
+branch: topic/subtopic
+repo: cs-course
+---
+
+Content goes in the default slot (right panel).
+```
+
+For `image-right`, the ratio still reads left-to-right (content / image), so `cols: 3-2` gives 60 % content on the left and 40 % image on the right. The default is `3-2`.
+
+| `cols` | image-left split | image-right split |
+| ------ | ---------------- | ----------------- |
+| `1-2`  | 33 / 67          | 67 / 33           |
+| `2-3`  | 40 / 60 *(default image-left)* | 60 / 40 |
+| `1-1`  | 50 / 50          | 50 / 50           |
+| `3-2`  | 60 / 40          | 40 / 60 *(default image-right)* |
+| `2-1`  | 67 / 33          | 33 / 67           |
+
+### `quote`
+
+Full-screen citation slide styled as a multi-line block comment (`/* ... */`) rendered in Monaspace Radon.
+
+```yaml
+---
+layout: quote
+---
+
+Any fool can write code that a computer can understand.
+Good programmers write code that *humans* can understand.
+
+::author::
+Martin Fowler
+```
+
+The optional `::author::` slot renders the attribution right-aligned below the block.
+
+### `diff`
+
+IDE chrome with a unified diff view. Write a fenced code block with `lang="diff"` — lines prefixed with `-` are highlighted red, `+` green, and ` ` (space) are context lines.
+
+```yaml
+---
+layout: diff
+filename: sort.py           # default: changes.diff
+language: Python            # default: Diff
+branch: refactor/sorting
+repo: cs-course
+---
+
+# Sorting — O(n²) → O(n log n)
+
+```diff
+ def sort(arr: list) -> list:
+-    n = len(arr)
+-    for i in range(n):
+-        for j in range(n - i - 1):
+-            if arr[j] > arr[j + 1]:
+-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
++    arr.sort()
+     return arr
+```
+```
+
+### `full`
+
+Edge-to-edge canvas with no IDE chrome, no grid, and no padding. Use it for large Mermaid diagrams, iframes, custom HTML, or anything that needs total control of the slide area.
+
+```yaml
+---
+layout: full
+---
+
+<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+  <!-- your content -->
+</div>
+```
+
 ## Transitions
 
 The theme defaults to **`transition: fade`** for all slides. Fade works particularly well at the boundary between IDE slides (`default`, `two-columns`) and full-screen slides (`cover`, `section`), where the chrome appears and disappears. Between two consecutive IDE slides the effect is subtle — the content fades while the chrome visually stays put.
@@ -175,7 +341,7 @@ The tab bar shows one chip-style tab per slide, auto-scrolling to keep the activ
 
 ### Hiding slides from the tab bar
 
-By default, slides with `layout: cover` or `layout: section` are **hidden** from the tab bar (they don't have IDE chrome anyway).
+By default, slides with an ambient layout (no IDE chrome) are **hidden** from the tab bar: `cover`, `section`, `end`, `fact`, `image`, `quote`, and `full`.
 
 To **show all slides** including cover and section slides:
 
