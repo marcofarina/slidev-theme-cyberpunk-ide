@@ -4,6 +4,23 @@
 
 A cyberpunk IDE-style theme for [Slidev](https://github.com/slidevjs/slidev), designed for teaching computer science. Each slide looks like a file open in a dark IDE, complete with title bar, tab bar, and status bar.
 
+## Claude Code skill
+
+A Claude Code skill is included to help you write slides with this theme. When installed, invoke it with `/cyberpunk-ide` at the start of any session to give Claude full context about layouts, frontmatter, callouts, and content density rules.
+
+**Install:**
+
+```bash
+curl -fsSL -o ~/.claude/skills/cyberpunk-ide.md \
+  https://raw.githubusercontent.com/marcofarina/slidev-theme-cyberpunk-ide/main/skill/cyberpunk-ide.md
+```
+
+Then in any Claude Code session working on a presentation:
+
+```
+/cyberpunk-ide
+```
+
 ## Install
 
 Add the following frontmatter to your `slides.md`:
