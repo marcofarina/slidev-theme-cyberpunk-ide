@@ -136,7 +136,7 @@ html.dark {
    ========================================================= */
 
 .slidev-layout.default,
-.slidev-layout.two-cols {
+.slidev-layout.two-columns {
   padding: 10px !important;
 }
 
@@ -930,4 +930,49 @@ html.dark .mermaid svg .loopLine {
   margin-top: 20px;
   background: linear-gradient(to right, var(--cp-purple), transparent);
   filter: drop-shadow(0 0 4px var(--cp-purple));
+}
+
+/* =========================================================
+   TWO-COLUMNS layout — IDE dual-panel view
+   ========================================================= */
+
+.two-col-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.two-col-title {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.two-col-body {
+  flex: 1;
+  display: grid;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Proportions: 4 units split by a 1px divider column */
+.two-col-body.cols-1-3 { grid-template-columns: 1fr 1px 3fr; }
+.two-col-body.cols-2-2 { grid-template-columns: 1fr 1px 1fr; }
+.two-col-body.cols-3-1 { grid-template-columns: 3fr 1px 1fr; }
+
+/* Panel areas */
+.two-col-left,
+.two-col-right {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.two-col-left  { padding-right: 20px; }
+.two-col-right { padding-left: 20px; }
+
+/* Divider — IDE panel separator with neon glow */
+.two-col-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--cp-border-hi);
+  box-shadow: 0 0 6px #7dcfff55, 0 0 2px #7dcfff99;
 }
