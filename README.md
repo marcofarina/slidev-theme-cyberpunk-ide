@@ -25,6 +25,12 @@ Then in any Claude Code session working on a presentation:
 
 Add the following frontmatter to your `slides.md`:
 
+```yaml
+---
+theme: cyberpunk-ide
+---
+```
+
 ## Fonts
 
 The theme uses **Monaspace Neon** (body and code) and **Monaspace Radon** (comments in code blocks). Both variable fonts are bundled with the theme — no manual download or configuration required. They are licensed under the [SIL Open Font License 1.1](public/fonts/LICENSE).
@@ -83,14 +89,18 @@ Standard content slide wrapped in the IDE (title bar, tab bar, editor area, stat
 
 ```yaml
 ---
-filename: algorithms.py   # tab name and title bar — default: main.py
-language: Python         # status bar right — default: Python
-branch: 03/recursion    # status bar left — default: main
-repo: ComputerScience101    # status bar left (repo name) — default: cyberpunk-ide
+filename: recursion.py    # tab name and title bar — default: main.py
+language: Python          # status bar right — default: Python
+branch: recursion/base-case  # status bar left — default: main
+repo: cs-course           # status bar left (repo name) — default: cyberpunk-ide
 ---
 
 # Slide title
 ```
+
+**`filename`** should be unique across all slides and descriptive of the content — the tab bar doubles as a navigation index for the presenter.
+
+**`branch`** should read as a content breadcrumb in the form `topic/subtopic` (e.g. `recursion/base-case`, `sorting/bubble-sort`). Avoid numeric prefixes — they convey order, not meaning.
 
 ### `section`
 
@@ -106,6 +116,41 @@ section: Module 2        # label shown above the title — default: Modulo
 ```
 
 Wrap a word in `*...*` (em) to apply the neon purple accent color.
+
+### `two-columns`
+
+Splits the editor area into two panels separated by a neon vertical line. The title spans the full width above both panels.
+
+```yaml
+---
+layout: two-columns
+cols: 1-3             # panel proportions — see table below
+filename: sorting.py
+language: Python
+branch: sorting/bubble-sort
+repo: cs-course
+---
+
+# Slide title
+
+::left::
+
+Left panel content (text, bullets, callouts…)
+
+::right::
+
+Right panel content (code, diagram, image…)
+```
+
+| `cols` | Split   | Typical use |
+| ------ | ------- | ----------- |
+| `1-3`  | 25 / 75 | Short note + long code block |
+| `2-2`  | 50 / 50 | Text and code of similar length |
+| `3-1`  | 75 / 25 | Code + small diagram or flowchart |
+
+## Transitions
+
+**Do not use slide transitions.** The IDE chrome (title bar, tab bar, status bar) is a persistent frame — animated transitions break the illusion of a stable editor and produce visual glitches. Set `transition: none` in the headmatter (or omit it entirely, since the theme sets this as default).
 
 ## Tab bar
 
@@ -195,6 +240,8 @@ In this module you will see **recursion** in action.
 | `clean`      | cyan   | Best practices / clean code  |
 | `code`       | grey   | Syntax reminders / code tips |
 | `learn`      | purple | Learning objectives          |
+
+> **Incompatible with `mdc: true`.** MDC and `markdown-it-container` both use the `:::` block syntax and conflict with each other. The theme sets `mdc: false` by default — do not override it if you use callouts.
 
 **Custom icon and color** — each callout accepts optional `icon` and `color` props to override the preset:
 
