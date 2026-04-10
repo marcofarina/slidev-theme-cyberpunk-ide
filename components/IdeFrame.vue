@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { configs } from '@slidev/client'
 import { useNav } from '@slidev/client'
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
 withDefaults(defineProps<{
   filename?: string
@@ -45,11 +45,19 @@ function slideFilename(no: number): string {
 
 const tabbarEl = ref<HTMLElement>()
 
+// On first mount: snap to active tab instantly (no animation from position 0)
+onMounted(async () => {
+  await nextTick()
+  const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
+  if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' })
+})
+
+// On navigation: smooth scroll to active tab
 watch(currentPage, async () => {
   await nextTick()
   const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
   if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
-}, { immediate: true })
+})
 </script>
 
 <template>
