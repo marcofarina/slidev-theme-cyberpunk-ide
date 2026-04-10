@@ -1,7 +1,13 @@
+<script lang="ts">
+// Module scope: shared across all IdeFrame instances so the tab bar scroll feels
+// continuous. Going forward the active tab drifts right until it pins to the right
+// edge; going back it drifts left until it pins to the left edge.
+const sharedScrollLeft = { value: 0 }
+</script>
+
 <script setup lang="ts">
-import { configs } from '@slidev/client'
-import { useNav } from '@slidev/client'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { configs, onSlideEnter, useNav } from '@slidev/client'
+import { computed, nextTick, ref } from 'vue'
 
 withDefaults(defineProps<{
   filename?: string
@@ -45,19 +51,36 @@ function slideFilename(no: number): string {
 
 const tabbarEl = ref<HTMLElement>()
 
-// On first mount: snap to active tab instantly (no animation from position 0)
-onMounted(async () => {
-  await nextTick()
-  const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
-  if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' })
-})
+function syncScroll() {
+  const tabbar = tabbarEl.value
+  const active = tabbar?.querySelector<HTMLElement>('.ide-tab.active')
+  if (!tabbar || !active || !tabbar.offsetWidth) return
 
-// On navigation: smooth scroll to active tab
-watch(currentPage, async () => {
-  await nextTick()
-  const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
-  if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' })
-})
+  // Inherit the shared scroll position first, then nudge only if the active tab
+  // has fallen outside the visible area.
+  tabbar.scrollLeft = sharedScrollLeft.value
+
+  const PADDING = 8
+  const tabLeft  = active.offsetLeft
+  const tabRight = tabLeft + active.offsetWidth
+  const barLeft  = tabbar.scrollLeft
+  const barRight = barLeft + tabbar.offsetWidth
+
+  let target: number | null = null
+  if (tabLeft < barLeft + PADDING)
+    target = tabLeft - PADDING
+  else if (tabRight > barRight - PADDING)
+    target = tabRight - tabbar.offsetWidth + PADDING
+
+  if (target !== null) {
+    tabbar.scrollLeft = Math.max(0, target)
+    sharedScrollLeft.value = tabbar.scrollLeft
+  }
+}
+
+// Each SlideWrapper is mounted once (behind v-show) and revealed later. onMounted
+// fires while offsetWidth is 0, so we wait until the slide actually becomes active.
+onSlideEnter(() => { nextTick(syncScroll) })
 </script>
 
 <template>
