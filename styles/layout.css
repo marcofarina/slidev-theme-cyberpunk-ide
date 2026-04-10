@@ -653,23 +653,6 @@ html.dark {
   overflow: hidden;
 }
 
-/* Glowing horizontal rule */
-.slidev-layout.section::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--cp-purple) 30%,
-    var(--cp-purple) 70%,
-    transparent 100%
-  );
-  opacity: 0.15;
-}
 
 .section-inner {
   position: relative;
@@ -925,7 +908,7 @@ html.dark .mermaid svg .loopLine {
    ========================================================= */
 
 .section-bar {
-  width: 72px;
+  width: 80%;
   height: 3px;
   margin-top: 20px;
   background: linear-gradient(to right, var(--cp-purple), transparent);

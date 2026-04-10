@@ -1,6 +1,6 @@
 {
   "name": "slidev-theme-cyberpunk-ide",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "A cyberpunk IDE-style Slidev theme for teaching computer science",
   "author": "Marco Farina",
   "license": "Unlicense",
@@ -47,6 +47,7 @@
     "defaults": {
       "lineNumbers": true,
       "mdc": false,
+      "transition": "fade",
       "fonts": {
         "sans": "Monaspace Neon",
         "mono": "Monaspace Neon",
