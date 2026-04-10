@@ -35,10 +35,11 @@ const visibleSlides = computed(() => {
     const fm = slide?.meta?.slide?.frontmatter ?? {}
     // Per-slide explicit opt-out
     if (fm.hideTab === true || fm.hideTab === 'true') return false
-    // Global filter: skip cover/section layouts unless tabsShowAll is set
+    // Global filter: skip ambient (non-IDE-chrome) layouts unless tabsShowAll is set
     if (!tabsShowAll.value) {
       const layout = (slide?.meta as any)?.layout ?? fm.layout
-      if (layout === 'cover' || layout === 'section') return false
+      const HIDDEN_LAYOUTS = new Set(['cover', 'section', 'end', 'fact', 'quote', 'image', 'full'])
+      if (HIDDEN_LAYOUTS.has(layout)) return false
     }
     return true
   })
