@@ -45,11 +45,16 @@ function slideFilename(no: number): string {
 
 const tabbarEl = ref<HTMLElement>()
 
-// On first mount: snap to active tab instantly (no animation from position 0)
+// On first mount: snap to active tab by setting scrollLeft directly.
+// scrollIntoView (even with behavior:'instant') can still animate if the
+// browser inherits scroll-behavior:smooth, so we avoid it entirely here.
 onMounted(async () => {
   await nextTick()
-  const active = tabbarEl.value?.querySelector<HTMLElement>('.ide-tab.active')
-  if (active) active.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' })
+  const tabbar = tabbarEl.value
+  const active = tabbar?.querySelector<HTMLElement>('.ide-tab.active')
+  if (tabbar && active) {
+    tabbar.scrollLeft = active.offsetLeft - (tabbar.offsetWidth - active.offsetWidth) / 2
+  }
 })
 
 // On navigation: smooth scroll to active tab
