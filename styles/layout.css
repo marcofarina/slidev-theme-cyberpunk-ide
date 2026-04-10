@@ -916,6 +916,34 @@ html.dark .mermaid svg .loopLine {
 }
 
 /* =========================================================
+   CENTER layout — IDE frame with centered content
+   ========================================================= */
+
+.slidev-layout.center {
+  padding: 10px !important;
+}
+
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.center-title {
+  flex-shrink: 0;
+  text-align: left;
+  padding-bottom: 0.25rem;
+}
+
+.center-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* =========================================================
    TWO-COLUMNS layout — IDE dual-panel view
    ========================================================= */
 
@@ -958,4 +986,477 @@ html.dark .mermaid svg .loopLine {
   align-self: stretch;
   background: var(--cp-border-hi);
   box-shadow: 0 0 6px #7dcfff55, 0 0 2px #7dcfff99;
+}
+
+/* =========================================================
+   END LAYOUT — closing slide, terminal-closed aesthetic
+   ========================================================= */
+
+.slidev-layout.end {
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.slidev-layout.end::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    var(--cp-scanline) 3px,
+    var(--cp-scanline) 4px
+  );
+  pointer-events: none;
+}
+
+/* Opposite corner brackets from cover (TR + BL instead of TL + BR) */
+.cover-bracket-tr,
+.cover-bracket-bl {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+}
+
+.cover-bracket-tr {
+  top: 0;
+  right: 0;
+  border-top: 2px solid var(--cp-cyan);
+  border-right: 2px solid var(--cp-cyan);
+  filter: drop-shadow(0 0 4px var(--cp-cyan));
+}
+
+.cover-bracket-bl {
+  bottom: 4px;
+  left: 0;
+  border-bottom: 2px solid var(--cp-purple);
+  border-left: 2px solid var(--cp-purple);
+  filter: drop-shadow(0 0 4px var(--cp-purple));
+}
+
+.end-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 60px;
+}
+
+.end-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--cp-text-faint);
+  margin-bottom: 20px;
+  font-family: 'Monaspace Radon', monospace;
+  font-style: italic;
+}
+
+.end-eyebrow::before {
+  content: '// ';
+}
+
+.slidev-layout.end h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    90deg,
+    var(--cp-cyan)   0%,
+    var(--cp-blue)   30%,
+    var(--cp-purple) 60%,
+    var(--cp-pink)   85%,
+    var(--cp-cyan)   100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(125, 207, 255, 0.25));
+  animation: cover-gradient 9s linear infinite;
+}
+
+.slidev-layout.end h1 + p {
+  font-size: 1rem;
+  color: var(--cp-text-dim);
+  margin: 0 0 6px 0;
+  opacity: 0.85;
+}
+
+.slidev-layout.end p {
+  font-size: 0.85rem;
+  color: var(--cp-text-dim);
+  margin: 3px 0;
+  line-height: 1.6;
+}
+
+.end-footer {
+  position: relative;
+  z-index: 1;
+  padding: 14px 60px;
+  border-top: 1px solid var(--cp-border);
+  font-size: 0.85rem;
+  color: var(--cp-text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.end-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--cp-cyan);
+  box-shadow: var(--glow-cyan);
+  animation: cursor-blink 1.1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* =========================================================
+   FACT LAYOUT — big statement / number highlight
+   ========================================================= */
+
+.slidev-layout.fact {
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.slidev-layout.fact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    var(--cp-scanline) 3px,
+    var(--cp-scanline) 4px
+  );
+  pointer-events: none;
+}
+
+.fact-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 60px 20px;
+}
+
+.fact-eyebrow {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--cp-purple);
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.fact-eyebrow::before {
+  content: '// ';
+  color: var(--cp-text-faint);
+}
+
+.slidev-layout.fact h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    90deg,
+    var(--cp-cyan)   0%,
+    var(--cp-blue)   30%,
+    var(--cp-purple) 60%,
+    var(--cp-pink)   85%,
+    var(--cp-cyan)   100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 24px rgba(125, 207, 255, 0.35));
+  animation: cover-gradient 9s linear infinite;
+}
+
+.fact-source {
+  position: relative;
+  z-index: 1;
+  padding: 0 60px 28px;
+  font-size: 0.9rem;
+  color: var(--cp-text-dim);
+  font-style: italic;
+}
+
+.fact-bar {
+  height: 3px;
+  background: linear-gradient(to right, var(--cp-cyan), transparent);
+  filter: drop-shadow(0 0 4px var(--cp-cyan));
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   FULL LAYOUT — edge-to-edge, no IDE chrome, no grid
+   ========================================================= */
+
+.slidev-layout.full {
+  padding: 0 !important;
+  background-color: var(--cp-bg);
+  background-image: none;
+  display: flex;
+  overflow: hidden;
+}
+
+/* =========================================================
+   IMAGE LAYOUT — full-bleed background image
+   ========================================================= */
+
+.slidev-layout.image {
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slidev-layout.image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    var(--cp-scanline) 3px,
+    var(--cp-scanline) 4px
+  );
+  pointer-events: none;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, var(--image-dim, 0.5));
+  z-index: 0;
+}
+
+.image-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.slidev-layout.image h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.slidev-layout.image p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================
+   IMAGE-LEFT / IMAGE-RIGHT — IDE split with image panel
+   ========================================================= */
+
+.slidev-layout.image-left,
+.slidev-layout.image-right {
+  padding: 10px !important;
+}
+
+.image-split-body {
+  display: grid;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Ratio classes — image-size / content-size (image-left) or content-size / image-size (image-right) */
+.image-split-body.cols-1-2 { grid-template-columns: 1fr 2fr; }
+.image-split-body.cols-2-3 { grid-template-columns: 2fr 3fr; }
+.image-split-body.cols-1-1 { grid-template-columns: 1fr 1fr; }
+.image-split-body.cols-3-2 { grid-template-columns: 3fr 2fr; }
+.image-split-body.cols-2-1 { grid-template-columns: 2fr 1fr; }
+.image-split-body.cols-1-3 { grid-template-columns: 1fr 3fr; }
+.image-split-body.cols-2-2 { grid-template-columns: 1fr 1fr; }
+.image-split-body.cols-3-1 { grid-template-columns: 3fr 1fr; }
+
+.image-split-panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-width: 0;
+  border-radius: 4px;
+}
+
+.image-split-content {
+  overflow: hidden;
+  min-width: 0;
+  padding-left: 20px;
+}
+
+.image-split-content.content-left {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+/* =========================================================
+   DIFF LAYOUT — unified diff view inside IDE chrome
+   ========================================================= */
+
+.slidev-layout.diff {
+  padding: 10px !important;
+}
+
+/* Line-level backgrounds for diff code blocks (lang="diff").
+   Classes are injected by the cyberpunk-ide:diff-lines Shiki transformer.
+   No display change — keeps <pre> whitespace rendering intact. */
+.ide-content .shiki .line.diff-add {
+  background: color-mix(in srgb, var(--cp-green) 16%, transparent);
+}
+
+.ide-content .shiki .line.diff-remove {
+  background: color-mix(in srgb, var(--cp-pink) 16%, transparent);
+}
+
+.ide-content .shiki .line.diff-hunk {
+  background: color-mix(in srgb, var(--cp-blue) 12%, transparent);
+  opacity: 0.8;
+}
+
+.ide-content .shiki .line.diff-file {
+  opacity: 0.5;
+}
+
+/* =========================================================
+   QUOTE LAYOUT — full-bleed comment-style citation
+   ========================================================= */
+
+.slidev-layout.quote {
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.slidev-layout.quote::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    var(--cp-scanline) 3px,
+    var(--cp-scanline) 4px
+  );
+  pointer-events: none;
+}
+
+.quote-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 80px;
+}
+
+.quote-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--cp-text-faint);
+  margin-bottom: 24px;
+  font-family: 'Monaspace Radon', monospace;
+}
+
+.quote-eyebrow::before {
+  content: '// ';
+}
+
+.quote-body {
+  border-left: 3px solid var(--cp-purple);
+  padding: 16px 28px;
+  position: relative;
+  background: color-mix(in srgb, var(--cp-purple) 6%, var(--cp-bg-desktop));
+  border-radius: 0 6px 6px 0;
+}
+
+.quote-body::before {
+  content: '/*';
+  display: block;
+  font-family: 'Monaspace Radon', monospace;
+  font-size: 1.2rem;
+  color: var(--cp-purple);
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.quote-body::after {
+  content: '*/';
+  display: block;
+  font-family: 'Monaspace Radon', monospace;
+  font-size: 1.2rem;
+  color: var(--cp-purple);
+  opacity: 0.6;
+  margin-top: 10px;
+}
+
+.slidev-layout.quote p,
+.quote-body p {
+  font-family: 'Monaspace Radon', monospace;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--cp-text);
+  margin: 0;
+}
+
+.quote-author {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--cp-text-dim);
+  padding-right: 4px;
+}
+
+.quote-author::before {
+  content: '— ';
+  color: var(--cp-purple);
 }

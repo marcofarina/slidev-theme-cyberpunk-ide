@@ -29,7 +29,7 @@ Welcome to the Computer Science course — Year 2140
 -->
 
 ---
-filename: variables.py
+filename: table.py
 language: Python
 repo: cs-examples
 branch: 01-basics/variables
@@ -54,7 +54,7 @@ passed: bool = grade >= 6
 ```
 
 ---
-filename: functions.py
+filename: comment-font.py
 language: Python
 repo: cs-examples
 branch: 01-basics/functions
@@ -84,7 +84,7 @@ section: Module 2
 # Data Structures
 
 ---
-filename: lists.py
+filename: blockquote.py
 language: Python
 repo: cs-examples
 branch: 02-structures/lists
@@ -266,7 +266,7 @@ Animal <|-- Cat
 ---
 layout: two-columns
 cols: 1-3
-filename: recursion.py
+filename: two-columns.py
 language: Python
 branch: 03/recursion
 repo: cs-examples
@@ -304,7 +304,7 @@ print(factorial(0))   # 1
 ---
 layout: two-columns
 cols: 2-2
-filename: recursion.py
+filename: two-columns.py
 language: Python
 branch: 03/recursion
 repo: cs-examples
@@ -344,7 +344,7 @@ factorial(4)
 ---
 layout: two-columns
 cols: 3-1
-filename: recursion.py
+filename: two-columns.py
 language: Python
 branch: 03/recursion
 repo: cs-examples
@@ -379,3 +379,149 @@ flowchart TD
     B -- no  --> D["return n × f(n-1)"]
     D --> B
 ```
+
+---
+layout: center
+title: Center Layout
+filename: center.py
+language: Python
+repo: cs-examples
+branch: extra/center
+---
+
+```mermaid {scale: 0.6}
+flowchart TD
+    A([/input x/]) --> B{x > 0?}
+    B -- yes --> C[print 'positive']
+    B -- no  --> D{x < 0?}
+    D -- yes --> E[print 'negative']
+    D -- no  --> F[print 'zero']
+    C --> G([end])
+    E --> G
+    F --> G
+```
+
+---
+layout: section
+section: New Layouts
+---
+
+# Additional Layouts
+
+---
+layout: fact
+fact: complexity
+---
+
+# O(n log n)
+
+::source::
+Lower bound for comparison-based sorting — proved by the decision tree argument.
+
+---
+layout: quote
+---
+
+Any fool can write code that a computer can understand.
+Good programmers write code that *humans* can understand.
+
+::author::
+Martin Fowler
+
+---
+layout: image
+image: https://picsum.photos/seed/cyberpunk/1920/1080
+dim: 55
+---
+
+# Image Layout
+
+Use `image` as background with optional text overlay.
+Control darkness with `dim: 0–100` (default 50).
+
+---
+layout: image-left
+image: https://picsum.photos/seed/algo/800/600
+filename: image-left.py
+language: Python
+repo: cs-examples
+branch: extra/image-left
+cols: 2-3
+---
+
+# Image Left — `cols: 2-3`
+
+The `image-left` layout places an image panel inside the IDE chrome on the left side.
+
+The `cols` prop sets the split ratio — `2-3` gives **40% image** and **60% content**.
+
+```yaml
+---
+layout: image-left
+image: /path/to/image.jpg
+cols: 2-3
+---
+```
+
+---
+layout: image-right
+image: https://picsum.photos/seed/data/800/600
+filename: image-right.py
+language: Python
+repo: cs-examples
+branch: extra/image-right
+cols: 3-2
+---
+
+# Image Right — `cols: 3-2`
+
+The `image-right` layout mirrors `image-left` — image panel on the right.
+
+`cols: 3-2` gives **60% content** and **40% image** (content is listed first in the ratio for right-side layouts).
+
+---
+layout: diff
+filename: sort.py
+repo: cs-examples
+branch: refactor/sorting
+---
+
+# Diff Layout — `lang: diff`
+
+Use `layout: diff` with a fenced code block labelled ` ```diff `.
+Prefix lines with `-` (removed) or `+` (added); a space means context.
+
+```diff
+ def sort(arr: list) -> list:
+-    n = len(arr)
+-    for i in range(n):
+-        for j in range(n - i - 1):
+-            if arr[j] > arr[j + 1]:
+-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
++    arr.sort()
+     return arr
+```
+
+---
+layout: full
+---
+
+<div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1b26 0%,#0d0e17 50%,#16161e 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:800;background:linear-gradient(90deg,#7dcfff,#bb9af7,#f7768e);-webkit-background-clip:text;background-clip:text;color:transparent;">
+    Full Layout
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:#565f89;">
+    Edge-to-edge canvas — no chrome, no grid, no padding.
+  </div>
+</div>
+
+---
+layout: end
+---
+
+# Thanks!
+
+Questions, feedback, contributions?
+
+::footer::
+github.com/your-org/cyberpunk-ide
