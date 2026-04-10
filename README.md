@@ -150,7 +150,24 @@ Right panel content (code, diagram, image…)
 
 ## Transitions
 
-**Do not use slide transitions.** The IDE chrome (title bar, tab bar, status bar) is a persistent frame — animated transitions break the illusion of a stable editor and produce visual glitches. Set `transition: none` in the headmatter (or omit it entirely, since the theme sets this as default).
+The theme defaults to **`transition: fade`** for all slides. Fade works particularly well at the boundary between IDE slides (`default`, `two-columns`) and full-screen slides (`cover`, `section`), where the chrome appears and disappears. Between two consecutive IDE slides the effect is subtle — the content fades while the chrome visually stays put.
+
+To disable transitions for the entire presentation:
+
+```yaml
+---
+# in the presentation headmatter (first slide)
+transition: none
+---
+```
+
+To override a single slide:
+
+```yaml
+---
+transition: none   # or any other Slidev transition name
+---
+```
 
 ## Tab bar
 
@@ -232,14 +249,14 @@ In this module you will see **recursion** in action.
 :::
 ```
 
-| Type         | Color  | Use for                      |
-| ------------ | ------ | ---------------------------- |
-| `definition` | brown  | Formal definitions           |
-| `info`       | yellow | Tips and notes               |
-| `warning`    | red    | Pitfalls and gotchas         |
-| `clean`      | cyan   | Best practices / clean code  |
-| `code`       | grey   | Syntax reminders / code tips |
-| `learn`      | purple | Learning objectives          |
+| Type         | Color      | Use for                      |
+| ------------ | ---------- | ---------------------------- |
+| `definition` | brown      | Formal definitions           |
+| `info`       | amber      | Tips and notes               |
+| `warning`    | red        | Pitfalls and gotchas         |
+| `clean`      | light blue | Best practices / clean code  |
+| `code`       | grey-blue  | Syntax reminders / code tips |
+| `learn`      | pink-violet| Learning objectives          |
 
 > **Incompatible with `mdc: true`.** MDC and `markdown-it-container` both use the `:::` block syntax and conflict with each other. The theme sets `mdc: false` by default — do not override it if you use callouts.
 
