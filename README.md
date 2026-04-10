@@ -23,51 +23,7 @@ Then in any Claude Code session working on a presentation:
 
 ## Install
 
-**1. Set the theme** in your `slides.md` headmatter:
-
-```yaml
----
-theme: cyberpunk-ide
----
-```
-
-**2. Create a `vite.config.ts`** in your presentation folder to enable callouts:
-
-```ts
-import { defineConfig } from 'vite'
-import Container from 'markdown-it-container'
-
-const calloutTypes = ['definition', 'info', 'warning', 'clean', 'code', 'learn']
-
-export default defineConfig({
-  slidev: {
-    markdown: {
-      markdownSetup(md: any) {
-        for (const type of calloutTypes) {
-          md.use(Container, type, {
-            render(tokens: any[], idx: number) {
-              const token = tokens[idx]
-              if (token.nesting === 1) {
-                const title = md.utils.escapeHtml(token.info.trim().slice(type.length).trim())
-                return `<Callout type="${type}" title="${title}">\n`
-              }
-              return '</Callout>\n'
-            },
-          })
-        }
-      },
-    },
-  },
-} as any)
-```
-
-You also need to install `markdown-it-container` in your presentation project:
-
-```bash
-npm install -D markdown-it-container
-```
-
-> **Why?** Slidev does not load `vite.config.ts` from theme packages in `node_modules` — only from your presentation's own root. The callout syntax (`:::type Title`) is parsed by a markdown-it plugin that must be registered in your project's Vite config.
+Add the following frontmatter to your `slides.md`:
 
 ## Fonts
 

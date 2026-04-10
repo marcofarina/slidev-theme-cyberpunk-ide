@@ -46,6 +46,7 @@
     "colorSchema": "both",
     "defaults": {
       "lineNumbers": true,
+      "mdc": false,
       "fonts": {
         "sans": "Monaspace Neon",
         "mono": "Monaspace Neon",

@@ -119,48 +119,6 @@ Use the branch to trace the conceptual path of the presentation: `macroargomento
 
 ---
 
-## PROJECT SETUP
-
-Every presentation using this theme requires a `vite.config.ts` in the project root to enable the callout syntax. Without it, `:::type Title` blocks render as plain text.
-
-```ts
-import { defineConfig } from 'vite'
-import Container from 'markdown-it-container'
-
-const calloutTypes = ['definition', 'info', 'warning', 'clean', 'code', 'learn']
-
-export default defineConfig({
-  slidev: {
-    markdown: {
-      markdownSetup(md: any) {
-        for (const type of calloutTypes) {
-          md.use(Container, type, {
-            render(tokens: any[], idx: number) {
-              const token = tokens[idx]
-              if (token.nesting === 1) {
-                const title = md.utils.escapeHtml(token.info.trim().slice(type.length).trim())
-                return `<Callout type="${type}" title="${title}">\n`
-              }
-              return '</Callout>\n'
-            },
-          })
-        }
-      },
-    },
-  },
-} as any)
-```
-
-Also install the dependency:
-
-```bash
-npm install -D markdown-it-container
-```
-
-If the user's project already has a `vite.config.ts`, merge this `slidev.markdown` block into it rather than replacing it.
-
----
-
 ## HEADMATTER OPTIONS (first slide frontmatter)
 
 ```yaml
