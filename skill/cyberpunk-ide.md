@@ -111,7 +111,11 @@ Every content slide (default and two-columns) accepts these props, which populat
 | `repo` | `cyberpunk-ide` | Status bar sinistra |
 | `hideTab: true` | — | Nasconde questa slide dalla tab bar |
 
-**Convention:** use `filename` matching the language extension (`.py`, `.md`, `.ts`, `.java`…) and `branch` as a meaningful path like `03/ricorsione` or `feat/sorting`.
+**`filename` — unique and meaningful across all slides**
+Every slide must have a distinct `filename`. The tab bar doubles as a navigation index for the presenter: meaningful, unique names let them jump to any slide at a glance. Bad: `main.py`, `slide2.py`. Good: `fattoriale.py`, `stack-ricorsione.py`, `bubble-sort.py`.
+
+**`branch` — content outline, not a number**
+Use the branch to trace the conceptual path of the presentation: `macroargomento/argomento-della-slide`. It should read like a breadcrumb. Examples: `ricorsione/caso-base`, `sorting/bubble-sort`, `oop/ereditarieta`. Avoid numeric prefixes like `03/ricorsione` — they convey order, not meaning.
 
 ---
 
@@ -119,10 +123,14 @@ Every content slide (default and two-columns) accepts these props, which populat
 
 ```yaml
 theme: slidev-theme-cyberpunk-ide
+transition: none      # REQUIRED — always set to none (see below)
 themeConfig:
   tabsShowAll: true   # show cover/section slides in tab bar (default: false)
 lineNumbers: false    # disable global line numbers (default: true)
 ```
+
+**Transitions: always disabled.**
+Never use slide transitions with this theme. The IDE chrome (title bar, tab bar, status bar) is a persistent frame — any animated transition between slides breaks the illusion of a stable editor and produces visual glitches. Set `transition: none` in the headmatter and never override it per-slide.
 
 ---
 
@@ -247,9 +255,9 @@ PlantUML is also available for UML class/sequence diagrams.
 
 ```md
 ---
-filename: nome-file.py
+filename: nome-significativo.py   # unico in tutta la presentazione
 language: Python
-branch: 01/argomento
+branch: macroargomento/argomento  # es. ricorsione/caso-base
 repo: nome-repo
 ---
 
